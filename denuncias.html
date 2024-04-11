@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alertas Ecológicos - Denúncias</title>
+</head>
+<body>
+  <h1>Alertas Ecológicos - Denúncias</h1>
+
+  <!-- Botão para abrir a câmera -->
+  <button id="btnCamera">Abrir Câmera</button>
+
+  <!-- Botão para capturar uma imagem -->
+  <input type="file" accept="image/*" capture="camera" id="btnCapturar">
+
+  <!-- Botão para anexar a foto em um e-mail -->
+  <button id="btnAnexar">Anexar Foto em E-mail</button>
+
+  <script>
+    // Função para abrir a câmera
+    function abrirCamera() {
+      // Verifica se o navegador suporta a captura de mídia
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Solicita permissão para acessar a câmera
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+            // Exibe o vídeo da câmera em um elemento de vídeo
+            var video = document.createElement('video');
+            video.srcObject = stream;
+            video.autoplay = true;
+            document.body.appendChild(video);
+          })
+          .catch(function(error) {
+            console.error('Erro ao acessar a câmera:', error);
+          });
+      } else {
+        console.error('Navegador não suporta captura de mídia.');
+      }
+    }
+
+    // Função para anexar a foto em um e-mail
+    function anexarFotoEmEmail() {
+      // Aqui você precisará implementar o código para enviar um e-mail com a foto anexada
+      // Isso geralmente é feito em um servidor usando uma linguagem de programação como PHP ou Node.js
+      // Como este é apenas um exemplo HTML, não podemos enviar e-mails diretamente do navegador
+      console.log('Implemente o envio de e-mail com a foto anexada.');
+    }
+
+    // Event listener para o botão de abrir a câmera
+    document.getElementById('btnCamera').addEventListener('click', abrirCamera);
+
+    // Event listener para o botão de capturar imagem
+    document.getElementById('btnCapturar').addEventListener('change', function(event) {
+      // Aqui você pode lidar com a imagem capturada
+      console.log('Imagem capturada:', event.target.files[0]);
+    });
+
+    // Event listener para o botão de anexar a foto em um e-mail
+    document.getElementById('btnAnexar').addEventListener('click', anexarFotoEmEmail);
+  </script>
+</body>
+</html>
